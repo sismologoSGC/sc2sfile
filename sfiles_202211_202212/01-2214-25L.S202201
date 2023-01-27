@@ -1,0 +1,18 @@
+ 2022  1 1 2216 25.5 L   1.895 -76.001 19.0  SGC  6 0.4 1.3 SGC                1
+ Action:ARG 23-01-27 11:28 OP:anls STATUS:               ID:20220101221625     I
+ ARC                 2022 0101 2214 25   800                                   6
+ STAT SP IPHASW D HRMM SECON CODA AMPLIT PERI AZIMU VELO AIN AR TRES W  DIS CAZ7
+ FLO2 HZ  P   1 D 221634.918                              99   -0.03   51.9 131 
+ FLO2 HN  S   1   221641.911                              99   -0.39   51.9 131 
+ GARC HZ  P   1   221637.348                              95    0.11   65.1  60 
+ GARC HN  S       221646.008                              95   -0.34   65.1  60 
+ SOTO HZ  P   1   221638.680                              93    0.08   72.5 291 
+ SOTO HN  S       221648.120                              93   -0.66   72.5 291 
+ MARO HZ  P   1   221643.290                              85   -0.14    105   2 
+ MARO HN  S       221656.401                              86   -0.97    105   2 
+ BBAC HZ  P       221648.728                              80   -0.34    139 275 
+ BBAC HN  S       2217 5.397                              80   -2.03    139 275 
+ COBO HZ  P   1   221637.694                              96    0.33   65.1 317 
+ COBO HN  S       221646.234                              96   -0.34   65.1 317 
+                                                                                
+

@@ -1,0 +1,14 @@
+ 2022  1 1  923 56.5 L   6.271 -75.731 81.8  SGC  4 0.1 1.6 SGC                1
+ Action:ARG 23-01-27 11:28 OP:anls STATUS:               ID:20220101092356     I
+ ARC                 2022 0101 0921 56   800                                   6
+ STAT SP IPHASW D HRMM SECON CODA AMPLIT PERI AZIMU VELO AIN AR TRES W  DIS CAZ7
+ HEL  HN  S   1    92418.276                             163    0.02   24.0 112 
+ HEL  HZ  P   1    924 8.729                             163    0.01   24.0 112 
+ CBOC HZ  P   1    92410.244                             143    0.07   54.7 215 
+ CBOC HN  S   1    92420.769                             143   -0.07   54.7 215 
+ QUBC HN  S   1    92427.790                             123   -0.68    104 237 
+ QUBC HZ  P   1    92414.543                             123    0.08    104 237 
+ MEDECHZ  P   1    924 8.096                             168   -0.10   15.6  88 
+ MEDECHN  S   1    92417.367                             168    0.05   15.6  88 
+                                                                                
+
