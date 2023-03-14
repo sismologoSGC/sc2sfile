@@ -11,7 +11,7 @@ Rutina realizada para convertir los eventos en Seiscomp a formato sfile
 Se corre en sistemas linux.
 
 ### - Python
-Python Versión 3.7 en adelante. (Usaremos como ejemplo python 3.8)
+Python Versión 3.7 en adelante. (Usaremos como ejemplo python 3.10)
 ```bash
 sudo apt-get install python3.7 (o 3.8)
 ```
@@ -23,8 +23,8 @@ python3.7 -m pip install virtualenv
 
 #### Instalación con pip 
 ```bash
-python3.7 -m virtualenv .revision
-source .revision/bin/activate
+python3.7 -m virtualenv env_sc2sf
+source env_sc2sf/bin/activate
 pip install -r requirements.txt
 ```
 
