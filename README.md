@@ -30,23 +30,20 @@ pip install -r requirements.txt
 
 ## Instrucciones de uso
 
-### Forma general
-Con +s se indica la fecha inicial y con +e la fecha final donde se desea hacer la revisión.
-```bash
-python revision.py +s 20210601T000000 +e 20210620T000000
-```
-### Filtrar usuario
-Se añade +u para poner el usuario.
-```bash
-python revision.py +s 20210601T000000 +e 20210620T000000 +u ecastillo
-```
+El programa se puede ejecutar en cualquier ambiente que tenga los requerimientos instalados, al ejecutarlo se solicitará una serie de parámetros para realizar la consulta: 
 
-### Guardar en un archivo
-Se añade +o (True o False) donde True es usado para guardar. Se debe añadir "> archivo.txt"
-```bash
-python revision.py +s 20210601T000000 +e 20210620T000000 +u ecastillo +o True > archivo.txt
-```
+- Ejecución del programa sc2sfile_2023.py en terminal
 
+```bash
+$ python3 sc2sfile_2023.py
+```
+### Primer parametro
+solicita la fecha inicial, y se ingresa de la siguiente manera: 
+(YYYY MM DD hh mm ss)  por ejemplo 2023 03 01 00 00 00
+
+```bash
+Fecha inicial (YYYY MM DD hh mm ss):   2023 03 01 00 00 00
+```
 
 ## Autor
 
