@@ -32,12 +32,12 @@ pip install -r requirements.txt
 
 El programa se puede ejecutar en cualquier ambiente que tenga los requerimientos instalados, al ejecutarlo se solicitará una serie de parámetros para realizar la consulta: 
 
-###- Ejecución del programa sc2sfile_2023.py en terminal
+#### Ejecución del programa sc2sfile_2023.py en terminal
 
 ```bash
 $ python3 sc2sfile_2023.py
 ```
-###- Primer parametro
+#### Primer parametro
 solicita la fecha inicial, y se ingresa de la siguiente manera: 
 (YYYY MM DD hh mm ss)  por ejemplo 2023 03 01 00 00 00
 
