@@ -19,6 +19,7 @@ def get_param():
 
     server_IP = 'http://10.100.100.232'
     port_fdsn = "8091"
+    Format = "mseed"
     # seiscomp 2018-2021 (funciona bien)
     
     #Fechas inicio y final
@@ -67,6 +68,8 @@ def get_param():
             ________________
             
             :   """)
+    #Descargar forma de onda
+    cons_wave = input("\n\t Descargar formas de onda? SI(0) NO(1)):  ")
 
             
     consulta = consulta1.strip(")").strip("(")
@@ -83,14 +86,18 @@ def get_param():
     else:
         print("\n\t LA LETRA INGRESADA NO ES CORRECTA, DIGITE 0, 1 o 2")
         sys.exit()
+        
+    if cons_wave != "0" and cons_wave != "1":
+        print("\n\t LA LETRA INGRESADA NO ES CORRECTA, DIGITE 0 o 1")
+        sys.exit()
     
     starttime = UTCDateTime(st)    
     endtime = UTCDateTime(et)
 
-    return server_IP, port_fdsn, starttime, endtime, loc, mag, prof, consulta, nloc
+    return server_IP, port_fdsn, starttime, endtime, loc, mag, prof, consulta, nloc, Format, cons_wave
 
 
-def sc2sfiles(server_IP, port_fdsn, starttime, endtime, loc,mag, prof,consulta,nloc):
+def sc2sfiles(server_IP, port_fdsn, starttime, endtime, loc,mag, prof,consulta,nloc,Format,cons_wave):
     
     client = Client(server_IP+":"+port_fdsn)
 
@@ -192,14 +199,35 @@ def sc2sfiles(server_IP, port_fdsn, starttime, endtime, loc,mag, prof,consulta,n
             event_id = event.resource_id.resource_id.split('/')[2]
             print(event_id)
             print(event)
-        #   "ARC PRV   HHZ CM 00 %s %s%s %s%s %s   300"
-            w ="ARC                 %s %s%s %s%s %s   800"%(\
-            str(time.year), str(time.month).rjust(2,"0"), str(time.day).rjust(2,"0"),
-            str(time.hour).rjust(2,"0"), str(min_w).rjust(2,"0"), str(time.second).rjust(2,"0"))
-
+            
+            
+            
+            if cons_wave == "0":
+            #   Forma de onda y nombre 
+                #tiempos
+                t =  UTCDateTime(int(time.year), int(time.month), int(time.day), int(time.hour), int(time.minute), int(time.second))
+                t_d = 720  #12 minutos
+                
+                client = Client(server_IP+":"+port_fdsn)
+                st = client.get_waveforms("*", "*", "*", "*", t, t+t_d)
+                name_w = f"{time.year}-{time.month}-{time.day}-{time.hour}{time.minute}-{int(time.second)}M.COL___{len(st)}"
+                wave_path = os.path.join(folder_name, name_w)
+            #   "ARC PRV   HHZ CM 00 %s %s%s %s%s %s   300"
+                #w ="ARC                 %s %s%s %s%s %s   800"%(\
+                #str(time.year), str(time.month).rjust(2,"0"), str(time.day).rjust(2,"0"),
+                #str(time.hour).rjust(2,"0"), str(min_w).rjust(2,"0"), str(time.second).rjust(2,"0"))
+                w=name_w
+                
+            if cons_wave == "1":
+                w="ARC                 %s %s%s %s%s %s   800"%(\
+                str(time.year), str(time.month).rjust(2,"0"), str(time.day).rjust(2,"0"),
+                str(time.hour).rjust(2,"0"), str(min_w).rjust(2,"0"), str(time.second).rjust(2,"0"))
+                
             name = str(time.day).rjust(2,"0")+"-"+str(time.hour).rjust(2,"0")+str(time.minute).rjust(2,"0")+\
-        "-"+str(time.second).rjust(2,"0")+"L.S"+str(time.year)+str(time.month).rjust(2,"0")
-        
+            "-"+str(time.second).rjust(2,"0")+"L.S"+str(time.year)+str(time.month).rjust(2,"0")
+
+            
+            
         # arreglando los eventos de hypo71
             event2 = fix_hypo71(event)
         
@@ -208,6 +236,8 @@ def sc2sfiles(server_IP, port_fdsn, starttime, endtime, loc,mag, prof,consulta,n
             try:
                     event2.write(wf_path, format="NORDIC", userid="anls", wavefiles=[w], high_accuracy=False)
                     con_conv += 1
+                    if cons_wave == "0":
+                        st.write(wave_path, Format) #Guardar forma de onda
             except:
                     os.system(f"rm {wf_path}")
                     print(f"\n\TNO SE PUEDE CONVERTIR EL EVENTO {event_id}")
@@ -257,8 +287,9 @@ def fix_hypo71(event):
         return event
 
 
+
 if __name__ == "__main__":
 
-    server_IP, port_fdsn, starttime, endtime, loc, mag, prof, consulta, nloc = get_param()
+    server_IP, port_fdsn, starttime, endtime, loc, mag, prof, consulta, nloc, Format,cons_wave = get_param()
 
-    sc2sfiles(server_IP, port_fdsn, starttime, endtime, loc, mag,prof, consulta, nloc)
+    sc2sfiles(server_IP, port_fdsn, starttime, endtime, loc, mag,prof, consulta, nloc, Format, cons_wave)
